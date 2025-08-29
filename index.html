@@ -50,6 +50,232 @@
     @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
     .review{min-width:320px;max-width:420px}
     .contact-small{font-size:.9rem}
+    /* === Desktop default === */
+.nav-toggle{display:none;}           /* hide hamburger */
+.nav-links{display:flex;gap:1rem;}   /* show links inline */
+
+/* === Mobile (≤820px) === */
+@media (max-width:820px){
+  .nav-toggle{display:inline-flex;}  /* show hamburger */
+
+  /* dropdown nav, hidden by default */
+  .nav-links{
+    display:block;
+    width:100%;
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:12px;
+    padding:.5rem;
+    box-shadow:var(--shadow);
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+  }
+
+  .nav-links a{
+    display:block;
+    padding:.6rem .75rem;
+    border-radius:8px;
+  }
+
+  /* open state */
+  .nav-links[data-state="open"]{max-height:280px}
+}
+/* Desktop only: make "Preferred Model" select bigger */
+@media (min-width: 900px){
+  /* target just the form on the Contact section */
+  #testRideForm select[name="model"]{
+    height: 56px;                 /* taller bar */
+    padding: 1rem 1.25rem !important; /* override inline padding */
+    font-size: 1.05rem;           /* larger text */
+    border-radius: 12px;          /* a bit chunkier */
+  }
+
+  /* optional: match other inputs so the row looks consistent */
+  #testRideForm input[type="text"],
+  #testRideForm input[type="tel"],
+  #testRideForm input[type="date"]{
+    height: 56px;
+    padding: 1rem 1.25rem !important;
+    font-size: 1.05rem;
+    border-radius: 12px;
+  }
+}
+/* ===== Background Contrast Styling ===== */
+
+/* Full page background: soft gradient */
+body {
+  background: linear-gradient(135deg, #f4f6fa 0%, #e9eef5 50%, #fdfdfd 100%);
+}
+
+/* Sections have soft separation */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Contact Section: highlight with stronger contrast */
+#contact {
+  background: linear-gradient(120deg, #ffffff 0%, #f7f9fc 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  padding: 48px 24px;
+}
+
+/* Form + dealership card consistent design */
+#contact .card {
+  background: #fff;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+#contact .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+}
+
+/* Inputs / select look modern */
+#contact input,
+#contact select {
+  background: #fdfdfd;
+  border: 1px solid #dbe0e8;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  transition: border .2s ease, box-shadow .2s ease;
+}
+
+#contact input:focus,
+#contact select:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(0,91,172,0.2);
+  outline: none;
+}
+/* ---- Replace yellow CC ribbon with a subtle pill ---- */
+.ribbon{
+  background:#eef2f7;      /* light neutral */
+  color:#0f172a;           /* slate */
+  border:1px solid #e5e7eb;
+  font-weight:600;
+}
+/* ---- Quick Enquiry form styling ---- */
+.pro-form{
+  background:#fff;border:1px solid #e5e7eb;border-radius:16px;
+  box-shadow:var(--shadow);padding:18px;
+}
+.pro-form .row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px}
+@media (max-width:700px){.pro-form .row{grid-template-columns:1fr}}
+.pro-form label{display:flex;flex-direction:column;gap:6px;font-weight:600}
+.pro-form input,.pro-form select,.pro-form textarea{
+  width:100%;padding:0.9rem 1rem;border:1px solid #dbe0e8;border-radius:12px;background:#fdfdfd;
+}
+.pro-form input:focus,.pro-form select:focus,.pro-form textarea:focus{
+  outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(0,91,172,.2);
+}
+.pro-form .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+/* ---- Promo slider ---- */
+.promo{position:relative;width:100%;height:320px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);background:#000}
+@media (max-width:1000px){.promo{height:240px}}
+.promo .slides{display:flex;height:100%;transition:transform .45s ease}
+.promo img{width:100%;height:100%;object-fit:cover;flex:0 0 100%}
+.promo .pnav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.5);
+  background:rgba(0,0,0,.35);color:#fff;font-size:22px;line-height:0;display:grid;place-items:center;
+}
+.promo .prev{left:10px}.promo .next{right:10px}
+.promo .dots{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:6px}
+.promo .dots button{width:8px;height:8px;border-radius:50%;border:0;background:#d1d5db;opacity:.8}
+.promo .dots button[aria-current="true"]{background:#fff;opacity:1}
+/* Bigger "Preferred Model" (Quick Enquiry) on desktop */
+@media (min-width: 900px){
+  #quickForm select[name="model"]{
+    height: 56px;
+    padding: 1rem 1.25rem;
+    font-size: 1.05rem;
+    border-radius: 12px;
+  }
+}
+
+/* Tiny error labels under fields */
+.field-error{
+  color:#b42318;             /* red-600 */
+  font-size:.8rem;
+  line-height:1.2;
+  min-height:1.1em;          /* keeps layout from jumping */
+}
+/* Make selects the same height as inputs/textarea */
+.pro-form select,
+.pro-form input,
+.pro-form textarea {
+  height: 56px;                /* same height for desktop */
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 1px solid #dbe0e8;
+  background:#fdfdfd;
+  box-sizing: border-box;
+}
+
+/* Only textarea should expand */
+.pro-form textarea {
+  height: auto;
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Desktop: make test-ride inputs/selects uniform & bigger */
+@media (min-width:900px){
+  #testRideForm input,
+  #testRideForm select{
+    height:56px;
+    font-size:1.05rem;
+    border-radius:12px;
+  }
+}
+/* lighter placeholder text */
+::placeholder{ color:#9aa3af; opacity:1 }
+/* --- form cleanup -------------------------------------------------------- */
+.form-card .row{display:grid;gap:12px}
+.form-card .row.two{grid-template-columns:1fr 1fr}
+.form-card .row.three{grid-template-columns:1fr 1fr 1fr}
+@media (max-width:900px){ .form-card .row.two,.form-card .row.three{grid-template-columns:1fr} }
+
+.form-card label{display:flex;flex-direction:column;gap:6px;font-weight:600}
+.form-card input,
+.form-card select,
+.form-card textarea{
+  width:100%; padding:.9rem 1rem; border:1px solid #ddd; border-radius:12px;
+  font:inherit; line-height:1.2; background:#fff;
+}
+.form-card select{appearance:none; background-image:linear-gradient(45deg,transparent 50%,#888 50%),
+                  linear-gradient(135deg,#888 50%,transparent 50%), linear-gradient(to right,#fff,#fff);
+  background-position:calc(100% - 18px) 55%, calc(100% - 12px) 55%, 0 0;
+  background-size:6px 6px, 6px 6px, 100% 100%; background-repeat:no-repeat;
+}
+.form-card small.field-error{color:#b42318;font-size:.8rem}
+::placeholder{color:#9aa3af;opacity:1}
+
+/* --- form cleanup (shared by Quick Enquiry + Test Ride) ------------------- */
+.form-card .row{display:grid;gap:12px}
+.form-card .row.two{grid-template-columns:1fr 1fr}
+.form-card .row.three{grid-template-columns:1fr 1fr 1fr}
+@media (max-width:900px){ .form-card .row.two,.form-card .row.three{grid-template-columns:1fr} }
+.form-card label{display:flex;flex-direction:column;gap:6px;font-weight:600}
+.form-card input,.form-card select,.form-card textarea{
+  width:100%; padding:.9rem 1rem; border:1px solid #ddd; border-radius:12px; font:inherit; line-height:1.2; background:#fff;
+}
+.form-card select{appearance:none; background-image:linear-gradient(45deg,transparent 50%,#888 50%),
+                  linear-gradient(135deg,#888 50%,transparent 50%), linear-gradient(to right,#fff,#fff);
+  background-position:calc(100% - 18px) 55%, calc(100% - 12px) 55%, 0 0;
+  background-size:6px 6px, 6px 6px, 100% 100%; background-repeat:no-repeat;
+}
+.form-card small.field-error{color:#b42318;font-size:.8rem}
+::placeholder{ color:#9aa3af; opacity:1 }
+
+
   </style>
   <!-- reduce referrer so some CDNs won’t block images -->
   <meta name="referrer" content="no-referrer">
@@ -76,12 +302,20 @@
           </div>
         </div>
       </div>
-      <nav>
+      <!-- === replace the existing <nav> block in the header with this === -->
+      <button class="nav-toggle" id="navToggle"
+              aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+        <!-- simple hamburger icon -->
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <nav id="primaryNav" class="nav-links" data-state="closed">
         <a href="#catalog">Catalog</a>
         <a href="#about">About Us</a>
         <a href="#reviews">Reviews</a>
         <a href="#contact">Contact</a>
       </nav>
+
     </div>
   </header>
 
@@ -98,12 +332,103 @@
         </div>
       </div>
       <div class="media">
-        <!-- Hero banner (fallback if blocked) -->
-        <img referrerpolicy="no-referrer" alt="Suzuki Motorcycles Banner"
-             data-srcs="assets/banner.jpg">
-      </div>
+  <!-- PROMOTION BANNER CODE -->
+  <div class="promo" id="promo" data-interval="2600">
+    <div class="slides">
+      <!-- Add/remove slides here; use your local JPGs -->
+      <img src="assets/banner.jpg" alt="Gixxer promotion">
+      <img src="assets/acess125.jpg" alt="V Strom Promotion 2">
+      <img src="assets/vstromadd.jpg" alt="V Strom Promotion">
+      <img src="assets/avenisadd.jpg" alt="Avenis Promotion">
+      <img src="assets/vstrom.jpg" alt="V Strom Promotion 2">
+      <img src="assets/katanaadd.jpg" alt="V Strom Promotion 2">
+      <img src="assets/burgman.jpg" alt="V Strom Promotion 2">
+      <img src="assets/katana2.webp" alt="V Strom Promotion 2">
+      <img src="assets/avenisadd2.jpg" alt="V Strom Promotion 2">
+      <img src="assets/burgman2.jpg" alt="V Strom Promotion 2">
+      <img src="assets/hayabusa.jpg" alt="V Strom Promotion 2">
+    </div>
+    <button class="pnav prev" aria-label="Previous">‹</button>
+    <button class="pnav next" aria-label="Next">›</button>
+    <div class="dots" aria-label="Slide pagination"></div>
+  </div>
+</div>
     </div>
   </section>
+  <!-- ======================= QUICK ENQUIRY (UPDATED) ======================= -->
+<section id="enquiry" class="container">
+  <h2>Quick Enquiry</h2>
+
+  <form class="card form-card" id="quickEnquiryForm" novalidate>
+    <div class="body">
+
+      <!-- Row 1: Name + Email -->
+      <div class="row two">
+        <label>Full Name
+          <input name="name" id="qeName" placeholder="Your Name" required>
+          <small class="field-error" data-for="qe-name"></small>
+        </label>
+        <label>Email
+          <input name="email" id="qeEmail" type="email" placeholder="you@example.com" required>
+          <small class="field-error" data-for="qe-email"></small>
+        </label>
+      </div>
+
+      <!-- Row 2: Country + Phone -->
+      <div class="row two" style="margin-top:12px">
+        <label>Country
+          <select name="country" id="qeCountry">
+            <option value="IN" selected>🇮🇳 India (+91)</option>
+            <option value="US">🇺🇸 United States (+1)</option>
+            <option value="GB">🇬🇧 United Kingdom (+44)</option>
+            <option value="AE">🇦🇪 UAE (+971)</option>
+            <option value="SG">🇸🇬 Singapore (+65)</option>
+            <option value="AU">🇦🇺 Australia (+61)</option>
+            <option value="OTHER">🌍 Other</option>
+          </select>
+        </label>
+        <label>Phone
+          <input name="phone" id="qePhone" type="tel" placeholder="10-digit for India" required>
+          <small class="field-error" data-for="qe-phone"></small>
+        </label>
+      </div>
+
+      <!-- Row 3: Model + City + Pincode -->
+      <div class="row three" style="margin-top:12px">
+        <label>Preferred Model
+          <select name="model" id="qeModel" required>
+            <option value="">Select a model</option>
+            <option>Access 125</option><option>Avenis 125</option><option>Burgman Street</option>
+            <option>Gixxer 155</option><option>Gixxer SF (155)</option><option>Gixxer 250</option>
+            <option>Gixxer SF 250</option><option>V-Strom SX 250</option><option>Gixxer SF 250 Flex Fuel</option>
+            <option>GSX-8R</option><option>V-Strom 800 DE</option><option>Katana</option><option>Hayabusa</option>
+          </select>
+        </label>
+        <label>City
+          <input name="city" id="qeCity" placeholder="City (e.g., Kavali)">
+        </label>
+        <label>Pincode
+          <input name="pincode" id="qePincode" placeholder="6-digit PIN (India)">
+          <small class="field-error" data-for="qe-pincode"></small>
+        </label>
+      </div>
+
+      <!-- Message -->
+      <label style="display:block;margin-top:12px">Message
+        <textarea name="message" id="qeMsg" rows="3" placeholder="Tell us what you need..."></textarea>
+      </label>
+
+      <!-- Actions -->
+      <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+        <button class="btn primary" type="submit">Submit</button>
+        <button class="btn ghost" type="reset">Reset</button>
+      </div>
+      <p class="muted" style="margin-top:10px">Submitting opens your email app to send the request directly to us.</p>
+
+    </div>
+  </form>
+</section>
+
 
   <!-- ======================= CATALOG ======================= -->
   <section id="catalog" class="container">
@@ -188,7 +513,7 @@
 
       <article class="card">
         <img alt="Suzuki Gixxer SF 250" referrerpolicy="no-referrer"
-             data-srcs="assets/gixxersf250.jpg|https://www.suzukimotorcycle.co.in/-/media/project/india2/product/gixxer-sf-250/slider/gixxer-sf-250.png|
+             data-srcs="assets/gixxersf250new.png|https://www.suzukimotorcycle.co.in/-/media/project/india2/product/gixxer-sf-250/slider/gixxer-sf-250.png|
                         https://tse1.mm.bing.net/th/id/OIP.K9Kp96bItz8oeH1V1aOf1AHaEK?pid=Api|
                         https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Suzuki_logo_2.svg/800px-Suzuki_logo_2.svg.png">
         <div class="body">
@@ -263,7 +588,7 @@
 
       <article class="card">
         <img alt="Suzuki Hayabusa" referrerpolicy="no-referrer"
-             data-srcs="assets/hayabusa.jpg|https://www.suzukimotorcycle.co.in/-/media/project/india2/product/hayabusa/slider/hayabusa.png|
+             data-srcs="assets/hayabusasuzuki.jpg|https://www.suzukimotorcycle.co.in/-/media/project/india2/product/hayabusa/slider/hayabusa.png|
                         https://tse1.mm.bing.net/th/id/OIP.LZ2ZmsNHuGQYQfj2RHfJgwHaEK?pid=Api|
                         https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Suzuki_logo_2.svg/800px-Suzuki_logo_2.svg.png">
         <div class="body">
@@ -274,6 +599,7 @@
       </article>
     </div>
   </section>
+  
 
   <!-- ======================= ABOUT US ======================= -->
   <section id="about" class="container">
@@ -299,40 +625,85 @@
   </section>
 
   <!-- ======================= CONTACT / TEST RIDE ======================= -->
-  <section id="contact" class="container">
-    <h2>Book a Test Ride / Contact</h2>
-    <div class="grid grid-2">
-      <!-- mailto form (no backend). JS builds email body & opens user's mail app -->
-      <form class="card" id="testRideForm">
-        <div class="body">
-          <div class="grid" style="grid-template-columns:1fr 1fr">
-            <label>Full Name<br><input name="name" required placeholder="Your Name" style="width:100%;padding:.75rem;border:1px solid #ddd;border-radius:10px"></label>
-            <label>Phone<br><input name="phone" required type="tel" placeholder="10-digit" style="width:100%;padding:.75rem;border:1px solid #ddd;border-radius:10px"></label>
-          </div>
-          <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:12px">
-            <label>City<br><input name="city" value="Kavali" style="width:100%;padding:.75rem;border:1px solid #ddd;border-radius:10px"></label>
-            <label>Pincode<br><input name="pincode" value="524201" style="width:100%;padding:.75rem;border:1px solid #ddd;border-radius:10px"></label>
-          </div>
-          <label style="display:block;margin-top:12px">Preferred Model<br>
-            <select name="model" style="width:100%;padding:.75rem;border:1px solid #ddd;border-radius:10px">
+  <!-- ======================= CONTACT / TEST RIDE ======================= -->
+<section id="contact" class="container">
+  <h2>Book a Test Ride / Contact</h2>
+
+  <div class="grid grid-2">
+    <!-- Test Ride Form -->
+    <form class="card form-card" id="testRideForm" novalidate>
+      <div class="body">
+
+        <!-- Row 1: Name + Email -->
+        <div class="row two">
+          <label>Full Name
+            <input name="name" id="trName" placeholder="Your Name" required>
+            <small class="field-error" data-for="tr-name"></small>
+          </label>
+          <label>Email
+            <input name="email" id="trEmail" type="email" placeholder="you@example.com" required>
+            <small class="field-error" data-for="tr-email"></small>
+          </label>
+        </div>
+
+        <!-- Row 2: Country + Phone -->
+        <div class="row two" style="margin-top:12px">
+          <label>Country
+            <select name="country" id="trCountry">
+              <option value="IN" selected>🇮🇳 India (+91)</option>
+              <option value="US">🇺🇸 United States (+1)</option>
+              <option value="GB">🇬🇧 United Kingdom (+44)</option>
+              <option value="AE">🇦🇪 UAE (+971)</option>
+              <option value="SG">🇸🇬 Singapore (+65)</option>
+              <option value="AU">🇦🇺 Australia (+61)</option>
+              <option value="OTHER">🌍 Other</option>
+            </select>
+          </label>
+          <label>Phone
+            <input name="phone" id="trPhone" type="tel" placeholder="10-digit for India" required>
+            <small class="field-error" data-for="tr-phone"></small>
+          </label>
+        </div>
+
+        <!-- Row 3: City + Pincode -->
+        <div class="row two" style="margin-top:12px">
+          <label>City
+            <input name="city" id="trCity" placeholder="City (e.g., Kavali)">
+          </label>
+          <label>Pincode
+            <input name="pincode" id="trPincode" placeholder="6-digit PIN (India)">
+            <small class="field-error" data-for="tr-pincode"></small>
+          </label>
+        </div>
+
+        <!-- Row 4: Model + Date -->
+        <div class="row two" style="margin-top:12px">
+          <label>Preferred Model
+            <select name="model" id="trModel" required>
+              <option value="">Select a model</option>
               <option>Access 125</option><option>Avenis 125</option><option>Burgman Street</option>
               <option>Gixxer 155</option><option>Gixxer SF (155)</option><option>Gixxer 250</option>
               <option>Gixxer SF 250</option><option>V-Strom SX 250</option><option>Gixxer SF 250 Flex Fuel</option>
               <option>GSX-8R</option><option>V-Strom 800 DE</option><option>Katana</option><option>Hayabusa</option>
             </select>
           </label>
-          <label style="display:block;margin-top:12px">Preferred Date<br>
-            <input name="date" type="date" style="width:100%;padding:.75rem;border:1px solid #ddd;border-radius:10px">
+          <label>Preferred Date
+            <input name="date" id="trDate" type="date">
           </label>
-          <div style="display:flex;gap:12px;margin-top:16px">
-            <button class="btn primary" type="submit">Submit</button>
-            <button class="btn ghost" type="reset">Reset</button>
-          </div>
-          <p class="muted" style="margin-top:10px">Submitting opens your email app to send the request directly to us.</p>
         </div>
-      </form>
 
-      <div class="card"><div class="body">
+        <!-- Actions -->
+        <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+          <button class="btn primary" type="submit">Submit</button>
+          <button class="btn ghost" type="reset">Reset</button>
+        </div>
+        <p class="muted" style="margin-top:10px">Submitting opens your email app to send the request directly to us.</p>
+      </div>
+    </form>
+
+    <!-- Dealership card (unchanged content; update if needed) -->
+    <div class="card">
+      <div class="body">
         <h3>Dealership</h3>
         <p><strong>SRI LAKSHMI NARASIMHA MOTORS</strong><br>
            Near Vishal Mart, Beside Royal Enfield, Trunk Road,<br>
@@ -343,16 +714,17 @@
         </p>
         <p class="muted">Open: 9:00 AM – 7:00 PM (Mon–Sun)</p>
 
-        <!-- Your exact Google Map embed -->
         <div class="map-wrap" style="margin-top:12px">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3855.6562678035234!2d79.98976927600816!3d14.90048686966248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4b7d7030198b05%3A0x14a1a3bdb7d4f3e1!2sSuzuki%20Motorcycle%20(Sri%20Lakshminarasimha%20Motors%2C%20Nellore%2C%20Kavali)!5e0!3m2!1sen!2sus!4v1756410548897!5m2!1sen!2sus"
             width="100%" height="300" style="border:0;border-radius:12px" allowfullscreen=""
             loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-      </div></div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- ======================= FOOTER ======================= -->
   <footer>
@@ -447,6 +819,163 @@
       );
       window.location.href = `mailto:suzuki.kavali@gmail.com?subject=${subject}&body=${body}`;
     });
+    // === Hamburger toggle ===
+(function(){
+  const btn = document.getElementById('navToggle');
+  const nav = document.getElementById('primaryNav');
+  if(!btn || !nav) return;
+
+  function closeMenu(){
+    nav.setAttribute('data-state','closed');
+    btn.setAttribute('aria-expanded','false');
+  }
+  function openMenu(){
+    nav.setAttribute('data-state','open');
+    btn.setAttribute('aria-expanded','true');
+  }
+  function toggle(){
+    const open = nav.getAttribute('data-state') === 'open';
+    open ? closeMenu() : openMenu();
+  }
+
+  btn.addEventListener('click', toggle);
+
+  // Close on Escape
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeMenu();
+  });
+
+  // Close when clicking a link
+  nav.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', closeMenu);
+  });
+})();
+// Quick Enquiry → opens mail app
+document.getElementById('quickForm')?.addEventListener('submit', function(e){
+  e.preventDefault();
+  const fd=new FormData(this);
+  const subject=encodeURIComponent('Quick Enquiry – ' + (fd.get('model')||'Suzuki'));
+  const body=encodeURIComponent(
+    `Quick Enquiry\n\nName: ${fd.get('name')||''}\nPhone: ${fd.get('phone')||''}\nCity: ${fd.get('city')||''}\nModel: ${fd.get('model')||''}\nMessage: ${fd.get('msg')||''}\n\n-- Sent from SRI LAKSHMI NARASIMHA MOTORS website`
+  );
+  location.href=`mailto:suzuki.kavali@gmail.com?subject=${subject}&body=${body}`;
+});
+// ---- Simple slider (auto + swipe + dots) ----
+(function(){
+  const wrap=document.getElementById('promo'); if(!wrap) return;
+  const track=wrap.querySelector('.slides'); const slides=[...track.children];
+  const dotsWrap=wrap.querySelector('.dots'); const prev=wrap.querySelector('.prev'); const next=wrap.querySelector('.next');
+  const ms=parseInt(wrap.getAttribute('data-interval')||'2600',10);
+  let i=0, timer=null, x0=null, dx=0;
+
+  // dots
+  slides.forEach((_,k)=>{ const b=document.createElement('button'); b.type='button'; b.addEventListener('click',()=>go(k)); dotsWrap.appendChild(b); });
+  function paint(){ track.style.transform=`translateX(-${i*100}%)`; dotsWrap.querySelectorAll('button').forEach((b,k)=>b.setAttribute('aria-current',k===i?'true':'false')); }
+  function go(k){ i=(k+slides.length)%slides.length; paint(); restart(); }
+  function nextS(){ go(i+1); }
+  function prevS(){ go(i-1); }
+  function start(){ timer=setInterval(nextS, ms); }
+  function stop(){ clearInterval(timer); timer=null; }
+  function restart(){ stop(); start(); }
+
+  // arrows
+  prev.addEventListener('click', prevS); next.addEventListener('click', nextS);
+
+  // pause on hover/focus
+  wrap.addEventListener('mouseenter', stop); wrap.addEventListener('mouseleave', start);
+  wrap.addEventListener('focusin', stop); wrap.addEventListener('focusout', start);
+
+  // touch/drag
+  wrap.addEventListener('touchstart', e=>{stop(); x0=e.touches[0].clientX;}, {passive:true});
+  wrap.addEventListener('touchmove', e=>{ if(x0==null) return; dx=e.touches[0].clientX-x0; track.style.transform=`translateX(calc(-${i*100}% + ${dx}px))`; }, {passive:true});
+  wrap.addEventListener('touchend', ()=>{ if(Math.abs(dx)>50){ dx>0?prevS():nextS(); } else { paint(); start(); } x0=null; dx=0; });
+
+  // init
+  paint(); start();
+})();
+// ===== Quick Enquiry validation =====
+(function(){
+  const form = document.getElementById('quickForm');
+  if(!form) return;
+
+  const countrySel = form.querySelector('#countrySel');
+  const phoneInput = form.querySelector('#phoneInput');
+
+  function setError(name, msg){
+    const el = form.querySelector(`.field-error[data-for="${name}"]`);
+    if(el) el.textContent = msg || '';
+  }
+
+  function clearErrors(){ ['name','email','phone'].forEach(n=>setError(n,'')); }
+
+  function validEmail(v){
+    // simple + safe email check
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v).trim());
+  }
+
+  function validIndianMobile(v){
+    // 10 digits, starts 6–9
+    return /^[6-9]\d{9}$/.test(v.trim());
+  }
+
+  function validIntlPhone(v){
+    // allow + and 6–15 digits total
+    return /^\+?\d{6,15}$/.test(v.replace(/\s+/g,''));
+  }
+
+  // Adjust placeholder when changing country
+  countrySel?.addEventListener('change', ()=>{
+    if(countrySel.value === 'IN'){
+      phoneInput.placeholder = '10-digit for India';
+    } else {
+      phoneInput.placeholder = 'Include country code, e.g. +44...';
+    }
+  });
+
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    clearErrors();
+
+    const fd = new FormData(form);
+    const name = String(fd.get('name')||'').trim();
+    const email = String(fd.get('email')||'').trim();
+    const phone = String(fd.get('phone')||'').trim().replace(/[^\d+]/g,''); // keep digits and +
+    const country = String(fd.get('country')||'IN');
+
+    let ok = true;
+
+    if(!name){ setError('name','Please enter your name'); ok=false; }
+    if(!validEmail(email)){ setError('email','Enter a valid email address'); ok=false; }
+
+    if(country === 'IN'){
+      // strict Indian mobile format
+      if(!validIndianMobile(phone)){ setError('phone','Enter a valid 10-digit Indian mobile (starts 6–9)'); ok=false; }
+    } else {
+      if(!validIntlPhone(phone)){ setError('phone','Enter a valid international phone (e.g., +9715…, +44…)'); ok=false; }
+    }
+
+    if(!ok) return;
+
+    // Build and open mailto
+    const subject = encodeURIComponent('Quick Enquiry – ' + (fd.get('model')||'Suzuki'));
+    const body = encodeURIComponent(
+`Quick Enquiry
+
+Name: ${name}
+Email: ${email}
+Country: ${country}
+Phone: ${phone}
+City: ${fd.get('city')||''}
+Model: ${fd.get('model')||''}
+
+Message:
+${fd.get('msg')||''}
+
+-- Sent from SRI LAKSHMI NARASIMHA MOTORS website`);
+    window.location.href = `mailto:suzuki.kavali@gmail.com?subject=${subject}&body=${body}`;
+  });
+})();
+
   </script>
 </body>
 </html>
